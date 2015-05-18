@@ -89,6 +89,7 @@ PODS:
     - OAuthCore
 
 DEPENDENCIES:
+  - BDBOAuth1Manager
   - Expecta
   - Lock-Twitter (from `../`)
   - Specta

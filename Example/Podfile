@@ -3,6 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Lock-Twitter', :exclusive => true do
   pod "Lock-Twitter", :path => "../"
+  pod 'BDBOAuth1Manager', :inhibit_warnings => true #Ignore warnings for this lib
 
   pod 'Specta'
   pod 'Expecta'
