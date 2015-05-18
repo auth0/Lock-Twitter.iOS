@@ -45,12 +45,12 @@ let twitter = A0TwitterAuthenticator.newAuthenticationWithKey(twitterApiKey, and
 
 and register it with your instance of `A0Lock`
 
-```
+```objc
 A0Lock *lock = ... //Get your instance of A0Lock
 [lock registerAuthenticators:@[twitter]];
 ```
 
-```
+```swift
 let lock = ... //Get your instance of A0Lock
 lock.registerAuthenticators([twitter])
 ```
