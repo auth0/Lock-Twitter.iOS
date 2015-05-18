@@ -1,6 +1,6 @@
 # Lock-Twitter
 
-[![CI Status](http://img.shields.io/travis/Hernan Zalazar/Lock-Twitter.svg?style=flat)](https://travis-ci.org/Hernan Zalazar/Lock-Twitter)
+[![CI Status](http://img.shields.io/travis/Hernan Zalazar/Lock-Twitter.svg?style=flat)](https://travis-ci.org/auth0/Lock-Twitter.iOS)
 [![Version](https://img.shields.io/cocoapods/v/Lock-Twitter.svg?style=flat)](http://cocoapods.org/pods/Lock-Twitter)
 [![License](https://img.shields.io/cocoapods/l/Lock-Twitter.svg?style=flat)](http://cocoapods.org/pods/Lock-Twitter)
 [![Platform](https://img.shields.io/cocoapods/p/Lock-Twitter.svg?style=flat)](http://cocoapods.org/pods/Lock-Twitter)
