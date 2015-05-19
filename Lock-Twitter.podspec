@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'Pod/Classes/*.h'
   s.source_files = 'Pod/Classes/*.{h,m}'
+  s.module_name = 'LockTwitter'
 
   s.dependency 'Lock/Core', '~> 1.11'
   s.dependency 'BDBOAuth1Manager', '~> 1.5.0'
