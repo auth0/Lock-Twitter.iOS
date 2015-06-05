@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.0.2](https://github.com/auth0/Lock-Twitter.iOS/tree/1.0.2) (2015-06-05)
+
+[Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.0.1...1.0.2)
+
+**Fixed bugs:**
+
+- Issue while building Lock-Twitter as a Cocoa Touch Framework [\#2](https://github.com/auth0/Lock-Twitter.iOS/issues/2)
+
 ## [1.0.1](https://github.com/auth0/Lock-Twitter.iOS/tree/1.0.1) (2015-05-19)
 
 [Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.0.0...1.0.1)
