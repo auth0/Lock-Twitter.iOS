@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Lock-Twitter"
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.summary          = "Twitter Native Integration for Auth0 Lock"
   s.description      = <<-DESC
                       [![Auth0](https://i.cloudup.com/1vaSVATKTL.png)](http://auth0.com)
