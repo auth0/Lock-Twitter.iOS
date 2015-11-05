@@ -35,7 +35,6 @@
 #import <BDBOAuth1Manager/BDBOAuth1RequestOperationManager.h>
 #import <TWReverseAuth/TWAPIManager.h>
 #import <OAuthCore/OAuth+Additions.h>
-#import <libextobjc/EXTScope.h>
 #import <PSAlertView/PSPDFActionSheet.h>
 
 #define kCallbackURLString @"a0%@://%@.auth0.com/authorize"
@@ -108,14 +107,12 @@ AUTH0_DYNAMIC_LOGGER_METHODS
         handled = YES;
         self.authenticating = YES;
         NSDictionary *parameters = [NSURL ab_parseURLQueryString:url.query];
-        @weakify(self);
         if (parameters[@"oauth_token"] && parameters[@"oauth_verifier"]) {
             A0LogVerbose(@"Requesting access token from twitter...");
             [self.manager fetchAccessTokenWithPath:@"/oauth/access_token"
                                             method:@"POST"
                                       requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query]
                                            success:^(BDBOAuth1Credential *accessToken) {
-                @strongify(self);
                 A0LogDebug(@"Received token %@ with userInfo %@", accessToken.token, accessToken.userInfo);
                 [self reverseAuthWithNewAccountWithInfo:accessToken];
             } failure:^(NSError *error) {
@@ -144,11 +141,9 @@ AUTH0_DYNAMIC_LOGGER_METHODS
 
     A0LogVerbose(@"Registering callback URL %@", self.callbackURL);
 
-    @weakify(self);
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         A0LogVerbose(@"Requesting access to iOS Twitter integration for Accounts");
         [self.accountStore requestAccessToAccountsWithType:self.accountType options:nil completion:^(BOOL granted, NSError *error) {
-            @strongify(self);
             if (granted && !error) {
                 NSArray *accounts = [self.accountStore accountsWithAccountType:self.accountType];
                 A0LogDebug(@"Obtained %lu accounts from iOS Twitter integration", (unsigned long)accounts.count);
@@ -205,12 +200,10 @@ AUTH0_DYNAMIC_LOGGER_METHODS
     account.username = [NSString stringWithFormat:@"@%@", info.userInfo[@"screen_name"]];
 
     A0LogDebug(@"About to save Twitter account @%@ in iOS Twitter integration.", account.username);
-    @weakify(self);
     [self.accountStore requestAccessToAccountsWithType:self.accountType options:nil completion:^(BOOL granted, NSError *error) {
         if (granted) {
             A0LogVerbose(@"Saving new twitter account in iOS...");
             [self.accountStore saveAccount:account withCompletionHandler:^(BOOL success, NSError *error) {
-                @strongify(self);
                 if (success && !error) {
                     ACAccount *account = [[self.accountStore accountsWithAccountType:self.accountType] firstObject];
                     A0LogDebug(@"Saved twitter account @%@", account.username);
@@ -232,12 +225,11 @@ AUTH0_DYNAMIC_LOGGER_METHODS
     account.accountType = self.accountType;
     A0LogVerbose(@"Starting reverse authentication with Twitter account @%@...", account.username);
 
-    @weakify(self);
+    __weak A0TwitterAuthenticator *weakSelf = self;
     [TWAPIManager performReverseAuthForAccount:account withHandler:^(NSData *responseData, NSError *error) {
-        @strongify(self);
         if (error || !responseData) {
             A0LogError(@"Failed to perform reverse auth with error %@", error);
-            [self executeFailureWithError:error];
+            [weakSelf executeFailureWithError:error];
         } else {
             NSError *payloadError;
             NSDictionary *response = [A0TwitterAuthenticator payloadFromResponseData:responseData error:&payloadError];
@@ -253,9 +245,9 @@ AUTH0_DYNAMIC_LOGGER_METHODS
                                             };
                 A0IdentityProviderCredentials *credentials = [[A0IdentityProviderCredentials alloc] initWithAccessToken:response[@"oauth_token"] extraInfo:extraInfo];
                 A0LogDebug(@"Successful Twitter auth with credentials %@", credentials);
-                [self executeSuccessWithCredentials:credentials parameters:self.parameters];
+                [weakSelf executeSuccessWithCredentials:credentials parameters:weakSelf.parameters];
             } else {
-                [self executeFailureWithError:payloadError];
+                [weakSelf executeFailureWithError:payloadError];
             }
         }
     }];
