@@ -23,68 +23,30 @@ PODS:
   - BDBOAuth1Manager (1.5.0):
     - AFNetworking/NSURLConnection (~> 2.5.0)
     - AFNetworking/NSURLSession (~> 2.5.0)
-  - CocoaLumberjack (2.0.0):
-    - CocoaLumberjack/Default (= 2.0.0)
-    - CocoaLumberjack/Extensions (= 2.0.0)
-  - CocoaLumberjack/Core (2.0.0)
-  - CocoaLumberjack/Default (2.0.0):
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0):
+  - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
-  - Expecta (1.0.0)
-  - ISO8601DateFormatter (0.7)
-  - libextobjc (0.4.1):
-    - libextobjc/EXTADT (= 0.4.1)
-    - libextobjc/EXTConcreteProtocol (= 0.4.1)
-    - libextobjc/EXTKeyPathCoding (= 0.4.1)
-    - libextobjc/EXTNil (= 0.4.1)
-    - libextobjc/EXTSafeCategory (= 0.4.1)
-    - libextobjc/EXTScope (= 0.4.1)
-    - libextobjc/EXTSelectorChecking (= 0.4.1)
-    - libextobjc/EXTSynthesize (= 0.4.1)
-    - libextobjc/NSInvocation+EXT (= 0.4.1)
-    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
-    - libextobjc/RuntimeExtensions (= 0.4.1)
-    - libextobjc/UmbrellaHeader (= 0.4.1)
-  - libextobjc/EXTADT (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTConcreteProtocol (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTKeyPathCoding (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTNil (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSafeCategory (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTScope (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSelectorChecking (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTSynthesize (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSInvocation+EXT (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/NSMethodSignature+EXT (0.4.1):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/RuntimeExtensions (0.4.1)
-  - libextobjc/UmbrellaHeader (0.4.1)
+  - Expecta (1.0.3)
   - Lock-Twitter (1.0.2):
     - BDBOAuth1Manager (~> 1.5.0)
     - CocoaLumberjack (~> 2.0)
     - Lock/Core (~> 1.11)
     - PSAlertView (~> 2.0)
     - TWReverseAuth (~> 0.1.0)
-  - Lock/Core (1.13.0):
+  - Lock/Core (1.21.0):
     - AFNetworking (~> 2.5)
-    - CocoaLumberjack (~> 2.0.0-rc)
-    - ISO8601DateFormatter (~> 0.7)
-    - libextobjc (~> 0.4)
-  - LUKeychainAccess (1.2.4)
+    - CocoaLumberjack (~> 2.0)
+  - LUKeychainAccess (1.2.5)
   - NSData+Base64 (1.0.0)
   - OAuthCore (0.0.1):
     - NSData+Base64
   - PSAlertView (2.0.3)
-  - Specta (1.0.1)
+  - Specta (1.0.4)
   - TWReverseAuth (0.1.1):
     - LUKeychainAccess
     - OAuthCore
@@ -102,17 +64,15 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
-  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
-  ISO8601DateFormatter: ab926648eebe497f4d167c0fd083992f959f1274
-  libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  Lock: 79ac2d131f94f1b5eae89a205059aa4464369427
-  Lock-Twitter: 8168e4c3861f6cc6581d1b8d635f41e29a607cb3
-  LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Lock: cf46cea61023248b458662a9800a99c410a355f4
+  Lock-Twitter: 2b1f62a841e7d35e1a0a7d517ae0b5d7c61e9647
+  LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
   PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
-  Specta: 097be314a75de103703a3bf9a529dc1a398509d7
+  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
   TWReverseAuth: d2deef3521fa6bee32eabab67f114c2c4a53d4f5
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0
