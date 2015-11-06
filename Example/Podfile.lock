@@ -32,10 +32,10 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - Expecta (1.0.3)
-  - Lock-Twitter (1.0.2):
+  - Lock-Twitter (1.1.0):
     - BDBOAuth1Manager (~> 1.5.0)
     - CocoaLumberjack (~> 2.0)
-    - Lock/Core (~> 1.11)
+    - Lock/Core (~> 1.20)
     - PSAlertView (~> 2.0)
     - TWReverseAuth (~> 0.1.0)
   - Lock/Core (1.21.0):
@@ -67,7 +67,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
   Lock: cf46cea61023248b458662a9800a99c410a355f4
-  Lock-Twitter: 2b1f62a841e7d35e1a0a7d517ae0b5d7c61e9647
+  Lock-Twitter: 385c8ec734fb627ac05cc8e77aaf58a8142b25b8
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581

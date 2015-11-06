@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Lock-Twitter"
-  s.version          = "1.0.2"
+  s.version          = "1.1.0"
   s.summary          = "Twitter Native Integration for Auth0 Lock"
   s.description      = <<-DESC
                       [![Auth0](https://i.cloudup.com/1vaSVATKTL.png)](http://auth0.com)
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes/*.{h,m}'
   s.module_name = 'LockTwitter'
 
-  s.dependency 'Lock/Core', '~> 1.11'
+  s.dependency 'Lock/Core', '~> 1.20'
   s.dependency 'BDBOAuth1Manager', '~> 1.5.0'
   s.dependency 'TWReverseAuth', '~> 0.1.0'
   s.dependency 'PSAlertView', '~> 2.0'
