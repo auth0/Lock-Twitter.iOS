@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "A0BaseAuthenticator.h"
+#import <Lock/A0BaseAuthenticator.h>
 
 /**
  *  `A0TwitterAuthentication` handles the authentication using Twitter as an indentity provider. In order to obtain a valid token to send to Auth0 API, it uses reverse authentication with the user's login information obtained form iOS Twitter integration or from OAuth Web Flow performed in Safari
