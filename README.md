@@ -20,7 +20,7 @@ iOS 7+
 The Lock-Twitter is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod "Lock-Twitter", "~> 1.0"
+pod "Lock-Twitter", "~> 1.1"
 ```
 
 ## Usage
