@@ -16,11 +16,11 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.public_header_files = 'Pod/Classes/*.h'
-  s.source_files = 'Pod/Classes/*.{h,m}'
+  s.source_files = 'Pod/Classes/**/*.{h,m}'
   s.module_name = 'LockTwitter'
 
   s.dependency 'Lock/Core', '~> 1.20'
-  s.dependency 'BDBOAuth1Manager', '~> 1.5.0'
+  s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'TWReverseAuth', '~> 0.1.0'
   s.dependency 'PSAlertView', '~> 2.0'
   s.dependency 'CocoaLumberjack', '~> 2.0'

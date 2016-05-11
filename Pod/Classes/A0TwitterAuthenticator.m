@@ -32,17 +32,17 @@
 
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
-#import <BDBOAuth1Manager/BDBOAuth1RequestOperationManager.h>
 #import <TWReverseAuth/TWAPIManager.h>
 #import <OAuthCore/OAuth+Additions.h>
 #import <PSAlertView/PSPDFActionSheet.h>
+#import "BDBOAuth1SessionManager.h"
 
 #define kCallbackURLString @"a0%@://%@.auth0.com/authorize"
 
 @interface A0TwitterAuthenticator ()
 
 @property (strong, nonatomic) A0AuthParameters *parameters;
-@property (strong, nonatomic) BDBOAuth1RequestOperationManager *manager;
+@property (strong, nonatomic) BDBOAuth1SessionManager *manager;
 @property (strong, nonatomic) NSURL *callbackURL;
 @property (strong, nonatomic) ACAccountStore *accountStore;
 @property (strong, nonatomic) ACAccountType *accountType;
@@ -65,7 +65,7 @@ AUTH0_DYNAMIC_LOGGER_METHODS
     self = [super init];
     if (self) {
         _authenticating = NO;
-        _manager = [[BDBOAuth1RequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/"]
+        _manager = [[BDBOAuth1SessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/"]
                                                                  consumerKey:key
                                                               consumerSecret:secret];
         [_manager deauthorize];
