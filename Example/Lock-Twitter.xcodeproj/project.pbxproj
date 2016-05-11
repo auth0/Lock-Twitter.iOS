@@ -12,12 +12,14 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		95F50A0B4B246F737D644388 /* libPods-Lock-Twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48F831E15A4BB2720CD6DB79 /* libPods-Lock-Twitter.a */; };
+		E18EF9A91F31DA214460A44E /* libPods-Lock-Twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D41218794CDE3D7CD239F00 /* libPods-Lock-Twitter.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21C1D48401C85B761DCD618A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		48F831E15A4BB2720CD6DB79 /* libPods-Lock-Twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lock-Twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C67F48ADCC7B154BFF2328 /* Pods-Lock-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
+		55B933E274182A78002338CC /* Pods-Lock-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter.release.xcconfig"; sourceTree = "<group>"; };
+		5D41218794CDE3D7CD239F00 /* libPods-Lock-Twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lock-Twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF29D3A1B0A9B7F00D5756B /* A0TwitterAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0TwitterAuthenticatorSpec.m; sourceTree = "<group>"; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -27,10 +29,8 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		749320AF042D71432CE041E3 /* Pods-Lock-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		9F0E0949A381C1A3946C967D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E284AB16D6BEF934D81AC49D /* Lock-Twitter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "Lock-Twitter.podspec"; path = "../Lock-Twitter.podspec"; sourceTree = "<group>"; };
-		FE8851FE5EAE71F2697DD6C3 /* Pods-Lock-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lock-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,22 +41,13 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				95F50A0B4B246F737D644388 /* libPods-Lock-Twitter.a in Frameworks */,
+				E18EF9A91F31DA214460A44E /* libPods-Lock-Twitter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		036B6E5D5DCB02F9430C947D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				749320AF042D71432CE041E3 /* Pods-Lock-Twitter.debug.xcconfig */,
-				FE8851FE5EAE71F2697DD6C3 /* Pods-Lock-Twitter.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -64,7 +55,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				036B6E5D5DCB02F9430C947D /* Pods */,
+				C088EC965F1D9E6667512097 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,7 +74,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				48F831E15A4BB2720CD6DB79 /* libPods-Lock-Twitter.a */,
+				5D41218794CDE3D7CD239F00 /* libPods-Lock-Twitter.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +108,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		C088EC965F1D9E6667512097 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52C67F48ADCC7B154BFF2328 /* Pods-Lock-Twitter.debug.xcconfig */,
+				55B933E274182A78002338CC /* Pods-Lock-Twitter.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,12 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Lock-Twitter" */;
 			buildPhases = (
-				94A83CF48884C375459EF0BA /* Check Pods Manifest.lock */,
+				A7BD6ED307BEECB6DD747428 /* 📦 Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				A6E6E70E8851A0370F25E574 /* Copy Pods Resources */,
-				D3AA2E33142D9F3B1CCB53D2 /* Embed Pods Frameworks */,
+				30E24024CB4B5459E9B6F9B9 /* 📦 Embed Pods Frameworks */,
+				09D7E5EFEC0783D4D11254BD /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,29 +185,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		94A83CF48884C375459EF0BA /* Check Pods Manifest.lock */ = {
+		09D7E5EFEC0783D4D11254BD /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A6E6E70E8851A0370F25E574 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,19 +200,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D3AA2E33142D9F3B1CCB53D2 /* Embed Pods Frameworks */ = {
+		30E24024CB4B5459E9B6F9B9 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lock-Twitter/Pods-Lock-Twitter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7BD6ED307BEECB6DD747428 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -330,7 +330,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 749320AF042D71432CE041E3 /* Pods-Lock-Twitter.debug.xcconfig */;
+			baseConfigurationReference = 52C67F48ADCC7B154BFF2328 /* Pods-Lock-Twitter.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -353,7 +353,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE8851FE5EAE71F2697DD6C3 /* Pods-Lock-Twitter.release.xcconfig */;
+			baseConfigurationReference = 55B933E274182A78002338CC /* Pods-Lock-Twitter.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

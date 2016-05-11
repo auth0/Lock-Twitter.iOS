@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Pod/Classes/**/*.{h,m}'
   s.module_name = 'LockTwitter'
 
-  s.dependency 'Lock/Core', '~> 1.20'
+  s.dependency 'Lock/Core', '~> 1.26'
   s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'TWReverseAuth', '~> 0.1.0'
   s.dependency 'PSAlertView', '~> 2.0'
