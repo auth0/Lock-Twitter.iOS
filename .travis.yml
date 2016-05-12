@@ -1,15 +1,13 @@
 language: objective-c
-podfile: Example/Podfile
-osx_image: xcode7.1
-before_install:
-- gem install cocoapods --no-rdoc --no-ri --no-document
-- pod install --project-directory=Example
-install:
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+osx_image: xcode7.3
+install: true
 script:
+- bundle install
+- bundle exec pod repo update
+- bundle exec pod install --project-directory=Example
 - set -o pipefail && xcodebuild test -workspace Example/Lock-Twitter.xcworkspace -scheme
   Lock-Twitter-iOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
-- pod lib lint --quick
+- bundle exec pod lib lint --quick
 notifications:
   slack:
     secure: hHXrNjlHA3djYHES+YpBV8WF74S7diwPUdvWCcqEcvPUyQ8g+pAFhNYef30EXxt1tnxxQp1i/JHBSjAWcyCeWtiCX2P14NfmGW70HNGV2qaAgZkLokfkF2jqh2z8xqbDihPZTmhax9YDJpp4lDC4QAMBKSQ2Y3vev4a3o2229RnAJNl+zYl5K2aeyZ1+wJCc3mPJhGZatECEcD2gfsM8mdN36OfV7Zi3j48lspcH09nNk/NChxiM6qJHdY0OqRLSfR3eYdhpfgrkKbgU+pTSMCVfTSMAk1zrG4dKmLB7dIMLsyGT9yWyubGcxHIUUUkV+FGp0Ty8BhQ41w2nKiNH+gnypgxujUdUbIjG6VN2TS+bSNoiTLT/X1pyFPkEfn6lodun0odC8toG0sgxy2FbzcW3pqxO7gMYpdoHXZhFWjLq09iWYqOBtIYr0Qx5ikn/I0fFAI+hSu5dYtqt8fDpxshI2dB15ies9C/22C1ucbduChNtiKLTue8RxJC669ProZksJ+O92XgJHma1OeiJaFz4EjZ63U1r10nvw3ycQKHygoJzeWuAgVD/YIP0dv5VFazYxKEFDIHL6/JpEgcC1SpI9mrTNYozrvV/MmXoEG2KBwl775wPd8iiPGT0FjrD02PwOdte+ePf4CycBSZ4+Vo1/c2DY1ELKVf48tZ3Z8s=

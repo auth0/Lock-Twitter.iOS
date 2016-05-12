@@ -1,58 +1,48 @@
 PODS:
-  - AFNetworking (2.5.4):
-    - AFNetworking/NSURLConnection (= 2.5.4)
-    - AFNetworking/NSURLSession (= 2.5.4)
-    - AFNetworking/Reachability (= 2.5.4)
-    - AFNetworking/Security (= 2.5.4)
-    - AFNetworking/Serialization (= 2.5.4)
-    - AFNetworking/UIKit (= 2.5.4)
-  - AFNetworking/NSURLConnection (2.5.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.4):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.4)
-  - AFNetworking/Security (2.5.4)
-  - AFNetworking/Serialization (2.5.4)
-  - AFNetworking/UIKit (2.5.4):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BDBOAuth1Manager (1.5.0):
-    - AFNetworking/NSURLConnection (~> 2.5.0)
-    - AFNetworking/NSURLSession (~> 2.5.0)
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
-  - Expecta (1.0.3)
+  - Expecta (1.0.5)
   - Lock-Twitter (1.1.1):
-    - BDBOAuth1Manager (~> 1.5.0)
+    - AFNetworking (~> 3.0)
     - CocoaLumberjack (~> 2.0)
-    - Lock/Core (~> 1.20)
+    - Lock/Core (~> 1.26)
     - PSAlertView (~> 2.0)
     - TWReverseAuth (~> 0.1.0)
-  - Lock/Core (1.21.0):
-    - AFNetworking (~> 2.5)
+  - Lock/Core (1.26.0):
+    - AFNetworking (~> 3.0)
     - CocoaLumberjack (~> 2.0)
   - LUKeychainAccess (1.2.5)
   - NSData+Base64 (1.0.0)
   - OAuthCore (0.0.1):
     - NSData+Base64
   - PSAlertView (2.0.3)
-  - Specta (1.0.4)
+  - Specta (1.0.5)
   - TWReverseAuth (0.1.1):
     - LUKeychainAccess
     - OAuthCore
 
 DEPENDENCIES:
-  - BDBOAuth1Manager
   - Expecta
   - Lock-Twitter (from `../`)
   - Specta
@@ -62,17 +52,18 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
-  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
-  Lock: cf46cea61023248b458662a9800a99c410a355f4
-  Lock-Twitter: 2f53a410c0b95e471a3ef30277935767f9c20a15
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
+  Lock: d863c3aebe57d2e8f3e5f40c9c5ba695ec2f1162
+  Lock-Twitter: f2f39b4fc2d1eba0b9574a64dd429ef2fe90ab16
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
   PSAlertView: 16d35f5dba549418492cf68a750d4f0dca21f4a2
-  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
+  Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
   TWReverseAuth: d2deef3521fa6bee32eabab67f114c2c4a53d4f5
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 212a7adf338b67335c86a17aba9bc4460db95702
+
+COCOAPODS: 1.0.0
