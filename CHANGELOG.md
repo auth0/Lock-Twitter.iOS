@@ -1,5 +1,24 @@
 # Change Log
 
+## [1.2.0](https://github.com/auth0/Lock-Twitter.iOS/tree/1.2.0) (2016-05-12)
+[Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.1.1...1.2.0)
+
+**Merged pull requests:**
+
+- Include BDBOAuth1Manager till we can remove it [\#9](https://github.com/auth0/Lock-Twitter.iOS/pull/9) ([hzalaz](https://github.com/hzalaz))
+- Update license and readme [\#7](https://github.com/auth0/Lock-Twitter.iOS/pull/7) ([Annyv2](https://github.com/Annyv2))
+
+## [1.1.1](https://github.com/auth0/Lock-Twitter.iOS/tree/1.1.1) (2015-11-26)
+[Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.1.0...1.1.1)
+
+**Closed issues:**
+
+- Issue to build on Swift/iOS9/XCode7.1.1 [\#4](https://github.com/auth0/Lock-Twitter.iOS/issues/4)
+
+**Merged pull requests:**
+
+- Fixes the build issue with A0BaseAuthenticator.h [\#5](https://github.com/auth0/Lock-Twitter.iOS/pull/5) ([aguerere](https://github.com/aguerere))
+
 ## [1.1.0](https://github.com/auth0/Lock-Twitter.iOS/tree/1.1.0) (2015-11-06)
 [Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.0.2...1.1.0)
 
