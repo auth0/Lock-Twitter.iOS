@@ -23,7 +23,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - Expecta (1.0.5)
-  - Lock-Twitter (1.1.1):
+  - Lock-Twitter (1.2.0):
     - AFNetworking (~> 3.0)
     - CocoaLumberjack (~> 2.0)
     - Lock/Core (~> 1.26)
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   Lock: d863c3aebe57d2e8f3e5f40c9c5ba695ec2f1162
-  Lock-Twitter: f2f39b4fc2d1eba0b9574a64dd429ef2fe90ab16
+  Lock-Twitter: f5d91851258a490d76d1ba31f66f3c95ffa71389
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   NSData+Base64: 4e84902c4db907a15673474677e57763ef3903e4
   OAuthCore: 43dce261db846a1fe20234d95654257e00e78581
