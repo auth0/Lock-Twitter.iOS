@@ -5,8 +5,7 @@ script:
 - bundle install
 - bundle exec pod repo update
 - bundle exec pod install --project-directory=Example
-- set -o pipefail && xcodebuild test -workspace Example/Lock-Twitter.xcworkspace -scheme
-  Lock-Twitter-iOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/Lock-Twitter.xcworkspace -scheme Lock-Twitter-iOS -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' | xcpretty -c
 - bundle exec pod lib lint --quick
 notifications:
   slack:

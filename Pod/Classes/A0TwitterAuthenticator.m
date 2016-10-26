@@ -55,8 +55,6 @@
 
 @implementation A0TwitterAuthenticator
 
-AUTH0_DYNAMIC_LOGGER_METHODS
-
 + (A0TwitterAuthenticator *)newAuthenticatorWithKey:(NSString *)key andSecret:(NSString *)secret {
     return [[A0TwitterAuthenticator alloc] initWithKey:key andSecret:secret];
 }
