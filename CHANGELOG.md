@@ -1,5 +1,14 @@
 # Change Log
 
+## [1.2.1](https://github.com/auth0/Lock-Twitter.iOS/tree/1.2.1) (2016-11-21)
+[Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.2.0...1.2.1)
+
+**Merged pull requests:**
+- Removed redundant code [\#13](https://github.com/auth0/Lock-Twitter.iOS/pull/13) ([cocojoe](https://github.com/cocojoe))
+
+**Closed issues:**
+- Lock-Twitter does not compile with the latest version (1.27) of Lock [\#12](https://github.com/auth0/Lock-Twitter.iOS/issues/12)
+
 ## [1.2.0](https://github.com/auth0/Lock-Twitter.iOS/tree/1.2.0) (2016-05-12)
 [Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.1.1...1.2.0)
 
