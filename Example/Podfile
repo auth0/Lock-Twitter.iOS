@@ -4,3 +4,8 @@ target 'Lock-Twitter' do
   pod 'Specta'
   pod 'Expecta'
 end
+
+target 'MyTwitter' do
+    pod "Lock-Twitter", :path => "../"
+end
+
