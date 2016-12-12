@@ -20,9 +20,5 @@ Pod::Spec.new do |s|
   s.module_name = 'LockTwitter'
 
   s.dependency 'Lock/Core', '~> 1.27'
-  s.dependency 'AFNetworking', '~> 3.0'
-  s.dependency 'TWReverseAuth', '~> 0.1.0'
-  s.dependency 'PSAlertView', '~> 2.0'
-  s.dependency 'CocoaLumberjack', '~> 2.0'
   s.frameworks  = 'Social', 'Accounts', 'Twitter'
 end
