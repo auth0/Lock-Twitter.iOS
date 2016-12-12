@@ -20,7 +20,7 @@ iOS 7+
 The Lock-Twitter is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod "Lock-Twitter", "~> 1.2"
+pod "Lock-Twitter", "~> 2.0"
 ```
 
 ## Usage
@@ -30,45 +30,69 @@ Twitter authentication use [Reverse Auth](https://dev.twitter.com/docs/ios/using
 First create a new instance of `A0TwitterAuthenticator`
 
 ```objc
-NSString *twitterApiKey = ... //Remember to obfuscate your api key
-NSString *twitterApiSecret = ... //Remember to obfuscate your api secret
-A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticationWithKey:twitterApiKey                                                                            andSecret:twitterApiSecret];
+NSString *twitterApiKey = ...
+A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticationWithConsumerKey:twitterApiKey];
 ```
 
 ```swift
 let twitterApiKey = ... //Remember to obfuscate your api key
-let twitterApiSecret = ... //Remember to obfuscate your api secret
-let twitter = A0TwitterAuthenticator.newAuthenticationWithKey(twitterApiKey, andSecret:twitterApiSecret)
+let twitter = A0TwitterAuthenticator.newAuthentication(withConsumerKey: twitterApiKey)
 ```
 
-> We need your twitter app's key & secret in order to sign the reverse auth request. 
-
-and register it with your instance of `A0Lock`
+and register it with your instance of `A0Lock` if native integration is available
 
 ```objc
 A0Lock *lock = ... //Get your instance of A0Lock
-[lock registerAuthenticators:@[twitter]];
+if ([A0TwitterAuthenticator canUseNativeTwitterAuthentication]) {
+    [lock registerAuthenticators:@[twitter]];
+}
 ```
 
 ```swift
 let lock = ... //Get your instance of A0Lock
-lock.registerAuthenticators([twitter])
+if A0TwitterAuthenticator.canUseNativeTwitterAuthentication() {
+    lock.registerAuthenticators([twitter])
+}
 ```
 
 ##API
 
 ###A0TwitterAuthenticator
 
-####A0TwitterAuthenticator#newAuthenticatorWithKey:andSecret:
+####A0TwitterAuthenticator#canUseNativeTwitterAuthentication:
 ```objc
-+ (A0TwitterAuthenticator *)newAuthenticatorWithKey:(NSString *)key andSecret:(NSString *)secret;
++ (BOOL)canUseNativeTwitterAuthentication;
 ```
-Create a new 'A0TwitterAuthenticator' using a Twitter API key & secret
+Checks if it twitter native integration is available in the device.
 ```objc
-A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticatorWithKey:@"KEY" andSecret:@"SECRET"];
+BOOL canUse = [A0TwitterAuthenticator canUseNativeTwitterAuthentication];
 ```
 ```swift
-let twitter = A0TwitterAuthenticator.newAuthenticatorWithKey("KEY", andSecret: "email")
+let canUse = A0TwitterAuthenticator.canUseNativeTwitterAuthentication()
+```
+
+####A0TwitterAuthenticator#newAuthenticatorWithConsumerKey:
+```objc
++ (A0TwitterAuthenticator *)newAuthenticatorWithConsumerKey:(NSString *)key;
+```
+Create a new 'A0TwitterAuthenticator' using a Twitter API key for the default twitter connection name.
+```objc
+A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@"KEY"];
+```
+```swift
+let twitter = A0TwitterAuthenticator.newAuthenticator(withConsumerKey: "KEY")
+```
+
+####A0TwitterAuthenticator#newAuthenticatorWithConnectionName:consumerKey:
+```objc
++ (A0TwitterAuthenticator *)newAuthenticatorWithConnectionName:(NSString *)connectionName consumerKey:(NSString *)consumerKey;
+```
+Create a new 'A0TwitterAuthenticator' using a Twitter API key and a connection name.
+```objc
+A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticatorWithConnectionName:@"my-twitter" consumerKey:@"KEY"];
+```
+```swift
+let twitter = A0TwitterAuthenticator.newAuthenticator(withConnectionName: "my-twitter", consumerKey: "KEY")
 ```
 
 ## Issue Reporting

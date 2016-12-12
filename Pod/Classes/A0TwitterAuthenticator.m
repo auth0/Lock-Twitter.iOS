@@ -51,6 +51,13 @@
     return [[self alloc] initWithConnectionName:@"twitter" consumerKey:consumerKey];
 }
 
++ (A0TwitterAuthenticator *)newAuthenticatorWithConnectionName:(NSString *)connectionName consumerKey:(NSString *)consumerKey {
+    return [[self alloc] initWithConnectionName:connectionName consumerKey:consumerKey];
+}
+
++ (BOOL)canUseNativeTwitterAuthentication {
+    return [A0Twitter isAvailable];
+}
 #pragma mark - Reverse Auth
 
 - (void)requestAuthSignatureWithCallback:(void(^)(NSError *, NSString *))callback {
