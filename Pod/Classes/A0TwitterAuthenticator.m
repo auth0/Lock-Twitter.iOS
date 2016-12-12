@@ -143,7 +143,7 @@
         }];
     };
 
-    [self.twitter chooseAccountWithCallback:onAccountSelected];
+    [self.twitter chooseAccountFromController:[self presenterViewController] callback:onAccountSelected];
 }
 
 - (NSString *)identifier {
@@ -153,4 +153,43 @@
 - (void)clearSessions {
     
 }
+
+#pragma mark - Present Controller
+
+- (UIViewController *)presenterViewController {
+    UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    return [self topViewControllerFromViewController:viewController];
+}
+
+- (UIViewController*) topViewControllerFromViewController:(UIViewController*)controller {
+    if (controller.presentedViewController) {
+        return [self topViewControllerFromViewController:controller.presentedViewController];
+    }
+    if ([controller isKindOfClass:[UISplitViewController class]]) {
+        UISplitViewController* splitViewController = (UISplitViewController*) controller;
+        if (splitViewController.viewControllers.count > 0) {
+            return [self topViewControllerFromViewController:splitViewController.viewControllers.lastObject];
+        } else {
+            return controller;
+        }
+    }
+    if ([controller isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*) controller;
+        if (navigationController.viewControllers.count > 0) {
+            return [self topViewControllerFromViewController:navigationController.topViewController];
+        } else {
+            return controller;
+        }
+    }
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*) controller;
+        if (tabBarController.viewControllers.count > 0) {
+            return [self topViewControllerFromViewController:tabBarController.selectedViewController];
+        } else {
+            return controller;
+        }
+    }
+    return controller;
+}
+
 @end

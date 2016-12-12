@@ -47,7 +47,7 @@
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
-- (void)chooseAccountWithCallback:(void (^)(NSError *, ACAccount *))callback {
+- (void)chooseAccountFromController:(UIViewController *)controller callback:(onAccoutSelected)callback {
     [self.store requestAccessToAccountsWithType:self.type options:nil completion:^(BOOL granted, NSError *error) {
         if (error || !granted) {
             callback([A0Errors twitterAppNotAuthorized], nil);
@@ -58,7 +58,7 @@
             callback(nil, accounts.firstObject);
             return;
         }
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *sheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         [accounts enumerateObjectsUsingBlock:^(ACAccount  * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *title = [@"@" stringByAppendingString:account.username];
             UIAlertAction *action = [UIAlertAction actionWithTitle:title
@@ -66,7 +66,7 @@
                                                            handler:^(UIAlertAction * _Nonnull action) {
                                                                callback(nil, account);
                                                            }];
-            [controller addAction:action];
+            [sheet addAction:action];
         }];
 
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
@@ -74,8 +74,9 @@
                                                              handler:^(UIAlertAction * _Nonnull action) {
                                                                  callback([A0Errors twitterCancelled], nil);
                                                              }];
-        [controller addAction:cancelAction];
-        [self presentController:controller completion:nil];
+        [sheet addAction:cancelAction];
+
+        [controller presentViewController:sheet animated:YES completion:nil];
     }];
 }
 
@@ -141,48 +142,6 @@
         *error = [A0Errors twitterAppNotAuthorized];
         return nil;
     }
-}
-
-#pragma mark - Present Controller
-
-- (void)presentController:(UIViewController *)controller completion:(void (^)())completion {
-    [[self presenterViewController] presentViewController:controller animated:YES completion:completion];
-}
-
-- (UIViewController *)presenterViewController {
-    UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    return [self topViewControllerFromViewController:viewController];
-}
-
-- (UIViewController*) topViewControllerFromViewController:(UIViewController*)controller {
-    if (controller.presentedViewController) {
-        return [self topViewControllerFromViewController:controller.presentedViewController];
-    }
-    if ([controller isKindOfClass:[UISplitViewController class]]) {
-        UISplitViewController* splitViewController = (UISplitViewController*) controller;
-        if (splitViewController.viewControllers.count > 0) {
-            return [self topViewControllerFromViewController:splitViewController.viewControllers.lastObject];
-        } else {
-            return controller;
-        }
-    }
-    if ([controller isKindOfClass:[UINavigationController class]]) {
-        UINavigationController* navigationController = (UINavigationController*) controller;
-        if (navigationController.viewControllers.count > 0) {
-            return [self topViewControllerFromViewController:navigationController.topViewController];
-        } else {
-            return controller;
-        }
-    }
-    if ([controller isKindOfClass:[UITabBarController class]]) {
-        UITabBarController* tabBarController = (UITabBarController*) controller;
-        if (tabBarController.viewControllers.count > 0) {
-            return [self topViewControllerFromViewController:tabBarController.selectedViewController];
-        } else {
-            return controller;
-        }
-    }
-    return controller;
 }
 
 @end

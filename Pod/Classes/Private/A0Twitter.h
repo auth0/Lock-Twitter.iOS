@@ -31,7 +31,7 @@ typedef void(^onAccoutSelected)(NSError *error, ACAccount *account);
 
 - (instancetype)initWithConsumerKey:(NSString *)consumerKey;
 
-- (void)chooseAccountWithCallback:(onAccoutSelected)callback;
+- (void)chooseAccountFromController:(UIViewController *)controller callback:(onAccoutSelected)callback;
 - (void)completeReverseAuthWithAccount:(ACAccount *)account signature:(NSString *)signature callback:(onReverseAuth)callback;
 
 + (BOOL)isAvailable;
