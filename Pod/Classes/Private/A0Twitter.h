@@ -24,10 +24,16 @@
 
 @class ACAccount;
 
+typedef void(^onReverseAuth)(NSError *error, NSString *token, NSString *secret, NSString *userId);
+typedef void(^onAccoutSelected)(NSError *error, ACAccount *account);
+
 @interface A0Twitter : NSObject
 
-+ (BOOL)isAvailable;
+- (instancetype)initWithConsumerKey:(NSString *)consumerKey;
 
-- (void)chooseAccountWithCallback:(void(^)(NSError *, ACAccount *))callback;
+- (void)chooseAccountWithCallback:(onAccoutSelected)callback;
+- (void)completeReverseAuthWithAccount:(ACAccount *)account signature:(NSString *)signature callback:(onReverseAuth)callback;
+
++ (BOOL)isAvailable;
 
 @end

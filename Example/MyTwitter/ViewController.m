@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <Lock/A0AuthParameters.h>
+#import <Lock/Lock.h>
 #import <Lock-Twitter/A0TwitterAuthenticator.h>
 
 @interface ViewController ()
@@ -18,7 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Auth0" ofType:@"plist"];
+    NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:path];
+    A0Lock *lock = [A0Lock sharedLock];
+    self.authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:info[@"TwitterConsumerKey"]];
+    self.authenticator.clientProvider = lock;
 }
 
 - (IBAction)login:(id)sender {

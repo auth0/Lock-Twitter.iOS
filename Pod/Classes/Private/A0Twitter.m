@@ -26,15 +26,17 @@
 #import <Lock/A0Errors.h>
 
 @interface A0Twitter ()
+@property (readonly, nonatomic) NSString *consumerKey;
 @property (strong, nonatomic) ACAccountStore *store;
 @property (strong, nonatomic) ACAccountType *type;
 @end
 
 @implementation A0Twitter
 
-- (instancetype)init {
+- (instancetype)initWithConsumerKey:(NSString *)consumerKey {
     self = [super init];
     if (self) {
+        _consumerKey = [consumerKey copy];
         _store = [[ACAccountStore alloc] init];
         _type = [_store accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     }
@@ -75,6 +77,70 @@
         [controller addAction:cancelAction];
         [self presentController:controller completion:nil];
     }];
+}
+
+- (void)completeReverseAuthWithAccount:(ACAccount *)account signature:(NSString *)signature callback:(onReverseAuth)callback {
+    NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodPOST
+                                                      URL:url
+                                               parameters:@{
+                                                            @"x_reverse_auth_target": self.consumerKey,
+                                                            @"x_reverse_auth_parameters": signature,
+                                                            }];
+    [request setAccount:account];
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        if (error || !responseData) {
+            return callback(error, nil, nil, nil);
+        }
+        if (urlResponse.statusCode < 200 || urlResponse.statusCode > 299) {
+            return callback([A0Errors twitterAppOauthNotAuthorized], nil, nil, nil);
+        }
+        NSError *failureError;
+        NSDictionary *payload = [A0Twitter payloadFromResponseData:responseData error:&failureError];
+        callback(failureError, payload[@"oauth_token"], payload[@"oauth_token_secret"], payload[@"user_id"]);
+    }];
+}
+
++ (NSDictionary *)payloadFromResponseData:(NSData *)responseData error:(NSError **)error {
+    NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    BOOL failed = responseStr && [responseStr rangeOfString:@"<error code=\""].location != NSNotFound;
+    if (failed) {
+        // <?xml version="1.0" encoding="UTF-8"?>
+        // <errors>
+        //   <error code="87">Client is not permitted to perform this action</error>
+        // </errors>
+        BOOL error87 = responseStr && [responseStr rangeOfString:@"<error code=\"87\">"].location != NSNotFound;
+        // <?xml version="1.0" encoding="UTF-8"?>
+        // <errors>
+        //   <error code="89">Error processing your OAuth request: invalid signature or token</error>
+        // </errors>
+        BOOL error89 = responseStr && [responseStr rangeOfString:@"<error code=\"89\">"].location != NSNotFound;
+        if (error != NULL) {
+            *error = [A0Errors twitterAppNotAuthorized];
+            if (error87) {
+                *error = [A0Errors twitterNotConfigured];
+            }
+            if (error89) {
+                *error = [A0Errors twitterInvalidAccount];
+            }
+        }
+        return nil;
+    }
+    NSURL *responseURL = [NSURL URLWithString:[@"https://auth0.com/callback?" stringByAppendingString:responseStr]];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:responseURL resolvingAgainstBaseURL:YES];
+    NSMutableDictionary *payload = [@{} mutableCopy];
+    [components.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (item.value) {
+            payload[item.name] = item.value;
+        }
+    }];
+    if (payload[@"oauth_token"] && payload[@"oauth_token_secret"] && payload[@"user_id"]) {
+        return payload;
+    } else {
+        *error = [A0Errors twitterAppNotAuthorized];
+        return nil;
+    }
 }
 
 #pragma mark - Present Controller

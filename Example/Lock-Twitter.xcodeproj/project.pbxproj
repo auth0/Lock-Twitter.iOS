@@ -187,6 +187,7 @@
 				5F3DF9C61DF8BF8B004C3C56 /* Resources */,
 				D21CF31DFDAD16A47D593A21 /* [CP] Embed Pods Frameworks */,
 				3BF5D2157FCFBC0FEEE428D1 /* [CP] Copy Pods Resources */,
+				5F3DF9E31DFE2E67004C3C56 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -336,6 +337,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyTwitter/Pods-MyTwitter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5F3DF9E31DFE2E67004C3C56 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "AUTH0_PLIST=\"${SRCROOT}/MyTwitter/Auth0.plist\"\nif [ -f $AUTH0_PLIST ];\nthen\ncp \"$AUTH0_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi";
 		};
 		A7BD6ED307BEECB6DD747428 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
