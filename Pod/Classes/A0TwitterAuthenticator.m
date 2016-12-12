@@ -29,6 +29,7 @@
 #import <Lock/A0Strategy.h>
 #import <Lock/A0IdentityProviderCredentials.h>
 #import "A0Twitter.h"
+#import "NSURLResponse+A0HTTPResponse.h"
 
 @interface A0TwitterAuthenticator ()
 @property (readonly, nonatomic) NSString *connectionName;
@@ -65,19 +66,20 @@
                                            };
     NSError *serializationError;
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    if (client.telemetryInfo) {
+        [request addValue:client.telemetryInfo forHTTPHeaderField:@"Auth0-Client"];
+    }
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:body options:0 error:&serializationError];
     if (serializationError) {
         callback(serializationError, nil);
         return;
-    }
+    }    
     [[[NSURLSession sharedSession] dataTaskWithRequest:request
                                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                         if (error) {
-                                            callback(error, nil);
-                                            return;
+                                            return callback(error, nil);
                                         }
-                                        NSHTTPURLResponse *http = (NSHTTPURLResponse *)response;
-                                        if ((http.statusCode > 299 || http.statusCode < 200) || !data) {
+                                        if (![response a0_isSuccess] || !data) {
                                             callback([A0Errors twitterNotConfigured], nil);
                                             return;
                                         }

@@ -24,6 +24,8 @@
 #import <Twitter/Twitter.h>
 #import <Accounts/Accounts.h>
 #import <Lock/A0Errors.h>
+#import "NSURLResponse+A0HTTPResponse.h"
+#import "Utilities.h"
 
 @interface A0Twitter ()
 @property (readonly, nonatomic) NSString *consumerKey;
@@ -50,26 +52,36 @@
 - (void)chooseAccountFromController:(UIViewController *)controller callback:(onAccoutSelected)callback {
     [self.store requestAccessToAccountsWithType:self.type options:nil completion:^(BOOL granted, NSError *error) {
         if (error || !granted) {
-            callback([A0Errors twitterAppNotAuthorized], nil);
-            return;
+            return callback([A0Errors twitterAppNotAuthorized], nil);
         }
         NSArray *accounts = [self.store accountsWithAccountType:self.type];
-        if (accounts.count == 1) {
-            callback(nil, accounts.firstObject);
-            return;
-        }
-        UIAlertController *sheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        [accounts enumerateObjectsUsingBlock:^(ACAccount  * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *title = [@"@" stringByAppendingString:account.username];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:title
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                               callback(nil, account);
-                                                           }];
-            [sheet addAction:action];
-        }];
 
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+        if (accounts.count == 1) {
+            return callback(nil, accounts.firstObject);
+        }
+
+        UIAlertController *sheet;
+
+        if (accounts.count > 0) {
+            NSString *title = A0LocalizedString(@"com.auth0.lock.integration.twitter.choose-account.title", @"Please choose a twitter account", @"Account chooser title");
+            sheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            [accounts enumerateObjectsUsingBlock:^(ACAccount  * _Nonnull account, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *title = [@"@" stringByAppendingString:account.username];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:title
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * _Nonnull action) {
+                                                                   callback(nil, account);
+                                                               }];
+                [sheet addAction:action];
+            }];
+        } else {
+            NSString *title = A0LocalizedString(@"com.auth0.lock.integration.twitter.choose-account.no-account.title", @"There was no twitter account configured in your iOS device", @"No account title");
+            NSString *message = A0LocalizedString(@"com.auth0.lock.integration.twitter.choose-account.no-account.message", @"Please go to iOS Settings > Twitter, add your account and try again.", @"No account registered in iOS");
+            sheet = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+        }
+
+        NSString *cancelTitle = A0LocalizedString(@"com.auth0.lock.integration.twitter.choose-account.cancel", @"Cancel", @"Cancel button");
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelTitle
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction * _Nonnull action) {
                                                                  callback([A0Errors twitterCancelled], nil);
@@ -94,7 +106,7 @@
         if (error || !responseData) {
             return callback(error, nil, nil, nil);
         }
-        if (urlResponse.statusCode < 200 || urlResponse.statusCode > 299) {
+        if (![urlResponse a0_isSuccess]) {
             return callback([A0Errors twitterAppOauthNotAuthorized], nil, nil, nil);
         }
         NSError *failureError;
