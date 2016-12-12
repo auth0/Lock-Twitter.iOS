@@ -7,23 +7,26 @@
 //
 
 #import "ViewController.h"
+#import <Lock/A0AuthParameters.h>
+#import <Lock-Twitter/A0TwitterAuthenticator.h>
 
 @interface ViewController ()
-
+@property (strong, nonatomic) A0TwitterAuthenticator *authenticator;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@""];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)login:(id)sender {
+    [self.authenticator authenticateWithParameters:[A0AuthParameters newDefaultParams] success:^(A0UserProfile * _Nonnull profile, A0Token * _Nonnull token) {
+        NSLog(@"SUCCESS");
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"Failed with error %@", error);
+    }];
 }
-
 
 @end
