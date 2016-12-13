@@ -13,7 +13,7 @@ Lock-Twitter helps you integrate native Login with Twitter and [Lock](https://au
 
 ## Requierements
 
-iOS 7+
+iOS 9+
 
 ## Install
 
@@ -25,7 +25,7 @@ pod "Lock-Twitter", "~> 2.0"
 
 ## Usage
 
-Twitter authentication use [Reverse Auth](https://dev.twitter.com/docs/ios/using-reverse-auth) to obtain a valid access_token that can be sent to Auth0 Server and validate the user. By default we use iOS Twitter Integration but we support OAuth Web Flow (with Safari) as a fallback mechanism in case the users has no accounts configured in their Apple Device.
+Twitter authentication use [Reverse Auth](https://dev.twitter.com/docs/ios/using-reverse-auth) to obtain a valid access_token that can be sent to Auth0 Server and validate the user.
 
 First create a new instance of `A0TwitterAuthenticator`
 
@@ -54,6 +54,18 @@ if A0TwitterAuthenticator.canUseNativeTwitterAuthentication() {
     lock.registerAuthenticators([twitter])
 }
 ```
+
+### Localization
+
+For the case when there are more than one twitter account, Lock-Twitter will let the user choose one use an action sheet. Here are the keys you need to add to your `Localizable.strings` file
+
+- **com.auth0.lock.integration.twitter.choose-account.title**: Title when choosing from multiple accounts
+- **com.auth0.lock.integration.twitter.choose-account.cancel**: Cancel button title of the action sheet
+
+Also when there are no accounts, Lock-Twitter will show an alert with an error that can be customizable with the following keys:
+
+- **com.auth0.lock.integration.twitter.choose-account.no-account.title**: Title when no twitter account is found in the iOS device
+- **com.auth0.lock.integration.twitter.choose-account.no-account.message**: Messsage when no twitter account is found in the iOS device
 
 ##API
 

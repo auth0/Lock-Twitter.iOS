@@ -1,5 +1,41 @@
 # Change Log
 
+## [2.0.0](https://github.com/auth0/Lock-Twitter.iOS/tree/2.0.0) (2016-12-12)
+[Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.2.1...2.0.0)
+
+**Changed**
+- Rework native integration [\#14](https://github.com/auth0/Lock-Twitter.iOS/pull/14) ([hzalaz](https://github.com/hzalaz))
+
+Lock-Twitter now only requires Twitter API Consumer Key, so you can just instantiate `A0TwitterAuthenticator` like:
+
+```objc
+NSString *twitterApiKey = ...
+A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticationWithConsumerKey:twitterApiKey];
+```
+
+```swift
+let twitterApiKey = ... //Remember to obfuscate your api key
+let twitter = A0TwitterAuthenticator.newAuthentication(withConsumerKey: twitterApiKey)
+```
+
+and register it with your instance of `A0Lock` if native integration is available
+
+```objc
+A0Lock *lock = ... //Get your instance of A0Lock
+if ([A0TwitterAuthenticator canUseNativeTwitterAuthentication]) {
+    [lock registerAuthenticators:@[twitter]];
+}
+```
+
+```swift
+let lock = ... //Get your instance of A0Lock
+if A0TwitterAuthenticator.canUseNativeTwitterAuthentication() {
+    lock.registerAuthenticators([twitter])
+}
+```
+
+Also Lock-Twitter won't default to OAuth flow anymore, we suggest checking if native authentication is available and only register the integration in that case.
+
 ## [1.2.1](https://github.com/auth0/Lock-Twitter.iOS/tree/1.2.1) (2016-11-21)
 [Full Changelog](https://github.com/auth0/Lock-Twitter.iOS/compare/1.2.0...1.2.1)
 
