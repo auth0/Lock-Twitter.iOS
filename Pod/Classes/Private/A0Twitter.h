@@ -1,6 +1,6 @@
-// A0TwitterAuthenticatorSpec.m
+// A0Twitter.h
 //
-// Copyright (c) 2015 Auth0 (http://auth0.com)
+// Copyright (c) 2016 Auth0 (http://auth0.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "Specta.h"
-#import "A0TwitterAuthenticator.h"
+#import <Foundation/Foundation.h>
 
+@class ACAccount;
 
-SpecBegin(A0TwitterAuthenticator)
+typedef void(^onReverseAuth)(NSError *error, NSString *token, NSString *secret, NSString *userId);
+typedef void(^onAccoutSelected)(NSError *error, ACAccount *account);
 
-describe(@"A0TwitterAuthenticator", ^{
+@interface A0Twitter : NSObject
 
-    __block A0TwitterAuthenticator *authenticator;
+- (instancetype)initWithConsumerKey:(NSString *)consumerKey;
 
-    it(@"should create a new instance", ^{
-        authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@"Key"];
-        expect(authenticator).toNot.beNil();
-    });
-});
+- (void)chooseAccountFromController:(UIViewController *)controller callback:(onAccoutSelected)callback;
+- (void)completeReverseAuthWithAccount:(ACAccount *)account signature:(NSString *)signature callback:(onReverseAuth)callback;
 
-SpecEnd
++ (BOOL)isAvailable;
+
+@end

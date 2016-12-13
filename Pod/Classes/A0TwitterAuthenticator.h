@@ -24,18 +24,33 @@
 #import <Lock/A0BaseAuthenticator.h>
 
 /**
- *  `A0TwitterAuthentication` handles the authentication using Twitter as an indentity provider. In order to obtain a valid token to send to Auth0 API, it uses reverse authentication with the user's login information obtained form iOS Twitter integration or from OAuth Web Flow performed in Safari
+ * `A0TwitterAuthentication` handles the authentication using Twitter as an indentity provider. In order to obtain a valid token to send to Auth0 API, it uses reverse authentication with the user's login information obtained form iOS Twitter integration.
+ * If there is no account registered in iOS it will fail.
+ *
+ * To configure it, you need to go to https://manage.auth0.com/#/connections/social, select Twitter and configure your consumer key and secret there.
+ * Then use the same consumer key to create `A0TwitterAuthenticator` instance.
  */
 @interface A0TwitterAuthenticator : A0BaseAuthenticator
 
 /**
- *  Returns a new instance with your Twitter's app key & secret. Also sepcifies the callback used to go back from Safari after Oauth Web Flow.
- *
- *  @param key         twitter app' API key.
- *  @param secret      twitter app' API secret.
- *
- *  @return a new instance.
+ * Creates a new twitter authenticator using a twitter api consumer key.
+ * By default the connection name is twitter
+ * @param consumerKey: consumer key of your twitter app
+ * @return a new twitter authenticator
  */
-+ (A0TwitterAuthenticator *)newAuthenticatorWithKey:(NSString *)key andSecret:(NSString *)secret;
++ (A0TwitterAuthenticator *)newAuthenticatorWithConsumerKey:(NSString *)consumerKey;
+
+/**
+ * Creates a new twitter authenticator using a twitter api consumer key and connection name.
+ * @param connectionName: name of the twitter connection
+ * @param consumerKey: consumer key of your twitter app
+ * @return a new twitter authenticator
+ */
++ (A0TwitterAuthenticator *)newAuthenticatorWithConnectionName:(NSString *)connectionName consumerKey:(NSString *)consumerKey;
+
+/**
+ * Checks if Twitter iOS integration is available and configured
+ */
++ (BOOL)canUseNativeTwitterAuthentication;
 
 @end

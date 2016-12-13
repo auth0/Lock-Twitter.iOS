@@ -1,4 +1,4 @@
-// A0TwitterAuthenticatorSpec.m
+// NSURLResponse+A0HTTPResponse.m
 //
 // Copyright (c) 2015 Auth0 (http://auth0.com)
 //
@@ -20,20 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "Specta.h"
-#import "A0TwitterAuthenticator.h"
+#import "NSURLResponse+A0HTTPResponse.h"
 
-
-SpecBegin(A0TwitterAuthenticator)
-
-describe(@"A0TwitterAuthenticator", ^{
-
-    __block A0TwitterAuthenticator *authenticator;
-
-    it(@"should create a new instance", ^{
-        authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@"Key"];
-        expect(authenticator).toNot.beNil();
-    });
-});
-
-SpecEnd
+@implementation NSURLResponse (A0HTTPResponse)
+- (BOOL)a0_isSuccess {
+    if (![self isKindOfClass:NSHTTPURLResponse.class]) {
+        return NO;
+    }
+    NSHTTPURLResponse *response = (NSHTTPURLResponse *)self;
+    return response.statusCode >= 200 && response.statusCode < 300;
+}
+@end

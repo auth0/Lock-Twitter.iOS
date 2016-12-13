@@ -1,4 +1,4 @@
-// A0TwitterAuthenticatorSpec.m
+// Utilities.h
 //
 // Copyright (c) 2015 Auth0 (http://auth0.com)
 //
@@ -20,20 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "Specta.h"
-#import "A0TwitterAuthenticator.h"
+#ifndef Utilities_h
+#define Utilities_h
 
+#define A0LocalizedString(key, default, comment) NSLocalizedStringWithDefaultValue(key, @"Localizable", [NSBundle mainBundle], default, comment);
 
-SpecBegin(A0TwitterAuthenticator)
-
-describe(@"A0TwitterAuthenticator", ^{
-
-    __block A0TwitterAuthenticator *authenticator;
-
-    it(@"should create a new instance", ^{
-        authenticator = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@"Key"];
-        expect(authenticator).toNot.beNil();
-    });
-});
-
-SpecEnd
+#endif /* Utilities_h */
