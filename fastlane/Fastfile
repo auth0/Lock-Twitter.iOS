@@ -1,0 +1,55 @@
+opt_out_usage
+
+fastlane_version "1.103.0"
+
+default_platform :ios
+
+platform :ios do
+
+  desc "Install dependencies from cache"
+  lane :prepare_cache do
+    Dir.chdir ".." do
+      sh "export AWS_REGION=#{ENV["AWS_REGION"]};carthage_cache install --bucket-name #{ENV["CARTHAGE_CACHE_BUCKET_NAME"]}"
+    end
+  end
+
+  desc "Run code linter"
+  lane :lint do
+    swiftlint(
+      mode: :lint,
+      config_file: '.swiftlint.yml'
+    )
+  end
+
+  desc "Run Pod lint"
+  lane :pod_lint do
+    pod_lib_lint(allow_warnings: true, verbose: false)
+  end
+
+  desc "Runs all the tests"
+  lane :test do |options|
+    scheme = options[:scheme]
+    device = options[:device]
+    scan(
+      scheme: scheme,
+      device: device,
+      clean: true,
+      output_types: 'junit'
+      )
+  end
+
+  desc "Runs all the tests in a CI environment"
+  lane :ci do
+    #ensure_git_status_clean # Until we add dangerfile check if there are changes this way
+    scheme = ENV["SCHEME"]
+    UI.user_error!("You must supply a valid scheme in 'SCHEME' env variable") if scheme.nil?
+    options = {
+      scheme: scheme,
+      device: ENV["DEVICE"]
+    }
+    prepare_cache
+    test(options)
+    lint
+  end
+
+end
