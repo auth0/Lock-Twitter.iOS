@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         lockTwitter.login(withConnection: "twitter", scope: "openid", parameters: [:]).start { result in
             switch result {
             case .success(let credentials):
-                print("Auth Success: \(credentials.accessToken)")
+                print("Auth Success: \(credentials)")
             case .failure(let error):
                 print("Auth Error: \(error)")
             }

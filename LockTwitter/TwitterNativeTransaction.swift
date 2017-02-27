@@ -48,7 +48,7 @@ class TwitterNativeTransaction: NativeAuthTransaction {
         twitter.retrieveAccount() { error, account in
             guard error == nil, let account = account else { return self.delayed(.failure(error: error!)) }
 
-            twitter.retrieveSignature(forAccount: account) { error, signature in
+            twitter.retrieveSignature(withConnection: self.connection, authentication: self.authentication) { error, signature in
                 guard error == nil, let signature = signature else { return self.delayed(.failure(error: error!)) }
 
                 twitter.retrieveToken(withSignature: signature, account: account, consumerKey: self.consumerKey) { error, token in

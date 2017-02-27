@@ -23,6 +23,7 @@
 import Foundation
 import Accounts
 import Social
+import Auth0
 
 public struct Twitter {
 
@@ -61,21 +62,25 @@ public struct Twitter {
         }
     }
 
-    func retrieveSignature(forAccount account: ACAccount, callback: @escaping (TwitterError?, String?) -> ()) {
+    func retrieveSignature(withConnection connection: String, authentication: Authentication, callback: @escaping (TwitterError?, String?) -> ()) {
 
         guard
-            let url = URL(string: "https://api.twitter.com/oauth/request_token"),
-            let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: ["x_auth_mode": "reverse_auth"])
+            let url = URL(string: "/oauth/reverse", relativeTo: authentication.url),
+            let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: ["client_id": authentication.clientId, "connection": connection])
             else { return callback(.signatureRequest, nil) }
 
-        request.account = account
-        request.perform() { data, response, error in
+        request.perform() { (data, response, error) in
             guard error == nil,
-                let data = data,
-                let signature = String(data: data, encoding: .utf8)
+                let jsonData = data
                 else { return callback(.signatureRequest, nil) }
 
-            callback(nil, signature)
+            do {
+                let signature = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [String: String]
+                guard signature["error"] == nil else { return callback(.signatureRequest, nil) }
+                callback(nil, signature["result"])
+            } catch {
+                callback(.signatureRequest, nil)
+            }
         }
 
     }
@@ -103,7 +108,6 @@ public struct Twitter {
                     dict[comps[0]] = comps[1]
                     return dict
             }
-
             callback(nil, tokenParameters)
         }
     }
