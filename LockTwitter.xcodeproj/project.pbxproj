@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B3384D81E3A541800819AEE /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B3384D71E3A541800819AEE /* Auth0.plist */; };
 		5B6269F41E41F23F00305093 /* TwitterNativeTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6269F31E41F23F00305093 /* TwitterNativeTransaction.swift */; };
 		5B9B4E3C1E3A33D600BEFCAF /* LockTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9B4E321E3A33D600BEFCAF /* LockTwitter.framework */; };
 		5B9B4E411E3A33D600BEFCAF /* LockTwitterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B4E401E3A33D600BEFCAF /* LockTwitterSpec.swift */; };
@@ -267,7 +266,7 @@
 				5B9B4E661E3A340100BEFCAF /* Embed Frameworks */,
 				5B6269F21E41F14100305093 /* SwiftLint */,
 				5BE434101E6056B400950FA1 /* Carthage */,
-				5BE434111E60575F00950FA1 /* Auth0 */,
+				5BE434461E6465B300950FA1 /* Auth0 */,
 			);
 			buildRules = (
 			);
@@ -348,7 +347,6 @@
 				5B9B4E5D1E3A33EA00BEFCAF /* LaunchScreen.storyboard in Resources */,
 				5B9B4E5A1E3A33EA00BEFCAF /* Assets.xcassets in Resources */,
 				5B9B4E581E3A33EA00BEFCAF /* Main.storyboard in Resources */,
-				5B3384D81E3A541800819AEE /* Auth0.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,20 +396,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		5BE434111E60575F00950FA1 /* Auth0 */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Auth0;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "AUTH0_PLIST=\"${SRCROOT}/Auth0.plist\"\nif [ -f $AUTH0_PLIST ];\nthen\ncp \"$AUTH0_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi";
-		};
 		5BE434201E60750A00950FA1 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,6 +410,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		5BE434461E6465B300950FA1 /* Auth0 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Auth0;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "AUTH0_PLIST=\"${SRCROOT}/Auth0.plist\"\nif [ -f $AUTH0_PLIST ];\nthen\ncp \"$AUTH0_PLIST\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

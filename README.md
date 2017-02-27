@@ -11,100 +11,56 @@ Lock-Twitter helps you integrate native Login with Twitter and [Lock](https://au
 
 ## Usage
 
-## Requierements
+## Requirements
 
-iOS 9+
+- iOS 9 or later
+- Xcode 8
+- Swift 3.0
 
 ## Install
 
-The Lock-Twitter is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+### CocoaPods
 
-```ruby
-pod "Lock-Twitter", "~> 2.0"
+ Add the following line to your Podfile:
+
+ ```ruby
+ pod "Lock-Facebook", "~> 3.0.0.beta"
+ ```
+
+### Carthage
+
+In your `Cartfile` add
+
+```
+github "auth0/Lock-Twitter.iOS" "3.0.0.beta"
 ```
 
 ## Usage
 
-Twitter authentication use [Reverse Auth](https://dev.twitter.com/docs/ios/using-reverse-auth) to obtain a valid access_token that can be sent to Auth0 Server and validate the user.
-
-First create a new instance of `A0TwitterAuthenticator`
-
-```objc
-NSString *twitterApiKey = ...
-A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticationWithConsumerKey:twitterApiKey];
-```
+First import **LockTwitter**
 
 ```swift
-let twitterApiKey = ... //Remember to obfuscate your api key
-let twitter = A0TwitterAuthenticator.newAuthentication(withConsumerKey: twitterApiKey)
+import LockFacebook
 ```
 
-and register it with your instance of `A0Lock` if native integration is available
+## Before you start using Lock-Twitter
 
-```objc
-A0Lock *lock = ... //Get your instance of A0Lock
-if ([A0TwitterAuthenticator canUseNativeTwitterAuthentication]) {
-    [lock registerAuthenticators:@[twitter]];
-}
-```
+In order to authenticate against Twitter, you'll need to register your application in [Twitter Developer portal](https://apps.twitter.com/).
+You will need the Consumer Key from the app, you can follow our [Connect your client to Twitter Guide](https://auth0.com/docs/connections/social/twitter).
+
+## Usage
+
+Just create a new instance of `LockTwitter` with your app's *Consumer Key*.
 
 ```swift
-let lock = ... //Get your instance of A0Lock
-if A0TwitterAuthenticator.canUseNativeTwitterAuthentication() {
-    lock.registerAuthenticators([twitter])
-}
+let lockTwitter = LockTwitter(withConsumerKey: "<YOUR CONSUMER KEY>")
 ```
 
-### Localization
+You can register this handler to a connection name when setting up Lock.
 
-For the case when there are more than one twitter account, Lock-Twitter will let the user choose one use an action sheet. Here are the keys you need to add to your `Localizable.strings` file
 
-- **com.auth0.lock.integration.twitter.choose-account.title**: Title when choosing from multiple accounts
-- **com.auth0.lock.integration.twitter.choose-account.cancel**: Cancel button title of the action sheet
-
-Also when there are no accounts, Lock-Twitter will show an alert with an error that can be customizable with the following keys:
-
-- **com.auth0.lock.integration.twitter.choose-account.no-account.title**: Title when no twitter account is found in the iOS device
-- **com.auth0.lock.integration.twitter.choose-account.no-account.message**: Messsage when no twitter account is found in the iOS device
-
-##API
-
-###A0TwitterAuthenticator
-
-####A0TwitterAuthenticator#canUseNativeTwitterAuthentication:
-```objc
-+ (BOOL)canUseNativeTwitterAuthentication;
-```
-Checks if it twitter native integration is available in the device.
-```objc
-BOOL canUse = [A0TwitterAuthenticator canUseNativeTwitterAuthentication];
-```
 ```swift
-let canUse = A0TwitterAuthenticator.canUseNativeTwitterAuthentication()
-```
-
-####A0TwitterAuthenticator#newAuthenticatorWithConsumerKey:
-```objc
-+ (A0TwitterAuthenticator *)newAuthenticatorWithConsumerKey:(NSString *)key;
-```
-Create a new 'A0TwitterAuthenticator' using a Twitter API key for the default twitter connection name.
-```objc
-A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticatorWithConsumerKey:@"KEY"];
-```
-```swift
-let twitter = A0TwitterAuthenticator.newAuthenticator(withConsumerKey: "KEY")
-```
-
-####A0TwitterAuthenticator#newAuthenticatorWithConnectionName:consumerKey:
-```objc
-+ (A0TwitterAuthenticator *)newAuthenticatorWithConnectionName:(NSString *)connectionName consumerKey:(NSString *)consumerKey;
-```
-Create a new 'A0TwitterAuthenticator' using a Twitter API key and a connection name.
-```objc
-A0TwitterAuthenticator *twitter = [A0TwitterAuthenticator newAuthenticatorWithConnectionName:@"my-twitter" consumerKey:@"KEY"];
-```
-```swift
-let twitter = A0TwitterAuthenticator.newAuthenticator(withConnectionName: "my-twitter", consumerKey: "KEY")
+.handlerAuthentication(forConnectionName: "twitter", handler: lockTwitter)
 ```
 
 ## Issue Reporting
@@ -134,4 +90,3 @@ Auth0 helps you to:
 ## License
 
 Lock-Twitter is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
-
